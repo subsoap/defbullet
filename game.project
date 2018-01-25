@@ -1,0 +1,17 @@
+[project]
+title = DefBullet
+dependencies = https://github.com/rgrams/rendercam/archive/v1.0.zip
+
+[library]
+include_dirs = defbullet
+
+[input]
+game_binding = /example/main.input_bindingc
+
+[bootstrap]
+main_collection = /example/main.collectionc
+render = /rendercam/rendercam.renderc
+
+[script]
+shared_state = 1
+

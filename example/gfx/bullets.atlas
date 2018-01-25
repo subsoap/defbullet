@@ -1,0 +1,9 @@
+images {
+  image: "/example/gfx/bullet_kunai.png"
+}
+images {
+  image: "/example/gfx/bullet_orb.png"
+}
+margin: 2
+extrude_borders: 0
+inner_padding: 2
