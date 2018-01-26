@@ -12,7 +12,9 @@ function init(self)
 	self.line_color = vmath.vector4(1, 1, 1, 1)
 	self.raycast_groups = {hash("default")}
 	
-	go.set_rotation(vmath.quat_from_to(vmath.vector3(1,0,0), self.direction))	
+	--go.set_rotation(vmath.quat_from_to(vmath.vector3(1,0,0), self.direction))
+	go.set_rotation(vmath.quat_rotation_z(math.atan2(self.direction.y, self.direction.x)))
+	self.position.z = math.random(100) * 0.0001
 end
 
 function final(self)
@@ -24,12 +26,12 @@ function update(self, dt)
 	
 	physics.ray_cast(self.position, self.position + self.direction * self.speed * dt, self.raycast_groups)
 
-	msg.post("@render:", "draw_line", { start_point = self.position, end_point = self.position + self.direction * self.speed * dt, color = self.line_color } )	
+	--msg.post("@render:", "draw_line", { start_point = self.position, end_point = self.position + self.direction * self.speed * dt, color = self.line_color } )	
 	--self.gun_direction = vmath.quat_from_to(self.origin_direction, vmath.normalize(rendercam_helper.look_direction)), self.gun_id
 	self.life = self.life - dt
 	if self.life < 0 then
 		go.delete()
-		print("dead")
+		--print("dead")
 	end
 	self.position = self.position + self.direction * self.speed * dt
 	go.set_position(self.position)
@@ -39,7 +41,7 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("ray_cast_response") then
 		factory.create("/hit_marker#factory", message.position)
 		
-		print("hit!")
+		--print("hit!")
 		go.delete()
 	end
 
