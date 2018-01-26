@@ -5,6 +5,7 @@ go.property("speed", 3000)
 go.property("position", vmath.vector3())
 go.property("life", 1)
 
+
 function init(self)
 	self.target = vmath.vector3()
 	

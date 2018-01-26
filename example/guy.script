@@ -1,5 +1,12 @@
 local rendercam = require("rendercam.rendercam")
 
+
+local function rotate_2d_vector(vector, theta)
+	local theta_sin = math.sin(theta)
+	local theta_cos = math.cos(theta)
+	return vector.x * theta_cos - vector.y * theta_sin, vector.x * theta_sin + vector.y * theta_cos
+end
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	self.target = vmath.vector3()
@@ -25,9 +32,11 @@ function update(self, dt)
 	end
 
 	if self.shooting == true and self.shooting_counter == 0 then
-		factory.create("/bullet_factory#factory", self.position, self.rotation, {direction = self.direction, speed = 2500 + math.random(500), position = self.position})
+		local temp_direction = vmath.vector3()
+		temp_direction.x, temp_direction.y = rotate_2d_vector(self.direction, (math.random(1,1000)-500) * 0.00025)
+		factory.create("/bullet_factory#factory", self.position, self.rotation, {direction = temp_direction, speed = 250 + math.random(100), position = self.position, life = 2})
 
-		self.shooting_counter = 0.05
+		self.shooting_counter = 0.15
 	end
 	
 	if self.shooting_counter > 0 then 
