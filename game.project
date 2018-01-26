@@ -1,6 +1,6 @@
 [project]
 title = DefBullet
-dependencies = https://github.com/rgrams/rendercam/archive/v1.0.zip
+dependencies = https://github.com/rgrams/rendercam/archive/master.zip
 
 [library]
 include_dirs = defbullet
@@ -14,4 +14,14 @@ render = /rendercam/rendercam.renderc
 
 [script]
 shared_state = 1
+
+[physics]
+debug = 1
+ray_cast_limit_2d = 1024
+
+[display]
+variable_dt = 1
+
+[sprite]
+max_count = 2056
 

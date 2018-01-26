@@ -4,6 +4,9 @@ images {
 images {
   image: "/example/gfx/bullet_orb.png"
 }
+images {
+  image: "/example/gfx/guy.png"
+}
 margin: 2
 extrude_borders: 0
 inner_padding: 2
